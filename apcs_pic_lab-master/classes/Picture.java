@@ -98,12 +98,89 @@ public class Picture extends SimplePicture
     }
   }
   
+  /** method that removes red and green from a picture*/
+    public void keepOnlyBlue()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+  
+  /** negates the pixels of a picture*/
+  public void negate()
+  {
+      Pixel[][] pixels = this.getPixels2D();
+      for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(255 - pixelObj.getRed());
+        pixelObj.setGreen(255 - pixelObj.getGreen());
+        pixelObj.setBlue(255 - pixelObj.getBlue());
+      }
+    }
+  }
+  
+  /** method that turns a picture to shades of gray */
+  public void grayscale()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed((pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue())/3);
+        pixelObj.setGreen((pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue())/3);
+        pixelObj.setBlue((pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue())/3);
+      }
+    }
+  }
+  
+  /** Method that makes the fish in water.jpg easier to see*/
+  public void fixUnderwater()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(pixelObj.getRed() + 150);
+        pixelObj.setGreen(pixelObj.getGreen() + 25);
+        pixelObj.setBlue(pixelObj.getBlue());
+      }
+    }
+}
+  
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
   public void mirrorVertical()
   {
     Pixel[][] pixels = this.getPixels2D();
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int width = pixels[0].length;
+    for (int row = 0; row < pixels.length; row++)
+    {
+      for (int col = 0; col < width / 2; col++)
+      {
+        leftPixel = pixels[row][col];
+        rightPixel = pixels[row][width - 1 - col];
+        rightPixel.setColor(leftPixel.getColor());
+      }
+    } 
+  }
+  
+  /** Mirrors a picture around a mirror placed vertically from right to left*/
+  public void mirrorVerticalRightToLeft()
+  {
+     Pixel[][] pixels = this.getPixels2D();
     Pixel leftPixel = null;
     Pixel rightPixel = null;
     int width = pixels[0].length;
@@ -223,10 +300,17 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("beach.jpg");
-    beach.explore();
-    beach.zeroBlue();
-    beach.explore();
+      //creates picture class fingercircle.jpg
+      Picture fc = new Picture("fingercircle.jpg");
+      //creates a picture class that is a smaller version of fingercircle.jpg
+      Picture smallFc = fc.scale(0.25, 0.25);
+      fc.explore();
+      //writes the class as a file
+      smallFc.write("smallFingerCircle.jpg");
+      //runs the explore method on the smallFc
+      smallFc.explore();
+    
   }
+  
   
 } // this } is the end of class Picture, put all new methods before this

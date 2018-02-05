@@ -8,13 +8,54 @@
  */
 public class PictureTester
 {
-  /** Method to test zeroBlue */
+  public static void testCompile()
+  {
+      SimplePicture p = new SimplePicture();
+  }
+  
+    /** Method to test zeroBlue */
   public static void testZeroBlue()
   {
-    Picture beach = new Picture("beach.jpg");
-    beach.explore();
-    beach.zeroBlue();
-    beach.explore();
+    Picture fC = new Picture("fingerCircle.jpg");
+    fC.explore();
+    fC.zeroBlue();
+    fC.explore();
+  }
+  
+    /** Method to test keepOnlyBlue */
+  public static void testKeepOnlyBlue()
+  {
+      Picture fC = new Picture("fingerCircle.jpg");
+      //fC.explore();
+      fC.keepOnlyBlue();
+      fC.explore();
+  }
+  
+  /** Method to test negate*/
+  public static void testNegate()
+  {
+      Picture fC = new Picture("fingerCircle.jpg");
+      //fC.explore();
+      fC.negate();
+      fC.explore();
+  }
+  
+  /** Method to test grayscale*/
+  public static void testGrayscale()
+  {
+      Picture fC = new Picture("fingerCircle.jpg");
+      //fC.explore();
+      fC.grayscale();
+      fC.explore();
+  }
+  
+  /** Method to test fixUnderwater */
+  public static void testFixUnderwater()
+  {
+      Picture water = new Picture("water.jpg");
+      water.explore();
+      water.fixUnderwater();
+      water.explore();
   }
   
   /** Method to test mirrorVertical */
@@ -26,6 +67,14 @@ public class PictureTester
     caterpillar.explore();
   }
   
+  /** Method to test MirrorVerticalRightToLeft()*/
+  public static void testMirrorVerticalRightToLeft()
+  {
+      Picture fC = new Picture("fingerCircle.jpg");
+      //fC.explore();
+      fC.mirrorVerticalRightToLeft();
+      fC.explore();  
+  }
   /** Method to test mirrorTemple */
   public static void testMirrorTemple()
   {
@@ -59,13 +108,14 @@ public class PictureTester
     // and comment out the ones you don't want
     // to run
     testZeroBlue();
-    //testKeepOnlyBlue();
+    testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
-    //testNegate();
-    //testGrayscale();
-    //testFixUnderwater();
+    testNegate();
+    testGrayscale();
+    testFixUnderwater();
     //testMirrorVertical();
+    testMirrorVerticalRightToLeft();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
