@@ -75,6 +75,14 @@ public class PictureTester
       fC.mirrorVerticalRightToLeft();
       fC.explore();  
   }
+  /** Method to test MirrorVerticalRightToLeft()*/
+  public static void testMirrorHorizontal()
+  {
+      Picture fC = new Picture("fingerCircle.jpg");
+      //fC.explore();
+      fC.mirrorHorizontal();
+      fC.explore();  
+  }
   /** Method to test mirrorTemple */
   public static void testMirrorTemple()
   {
@@ -116,6 +124,7 @@ public class PictureTester
     testFixUnderwater();
     //testMirrorVertical();
     testMirrorVerticalRightToLeft();
+    testMirrorHorizontal();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
